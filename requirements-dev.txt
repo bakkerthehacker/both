@@ -1,3 +1,4 @@
 ipdb
 ipython
 pytest
+pytest-xdist
