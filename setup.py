@@ -60,4 +60,7 @@ setup(
     ),
     packages=['both'],
     cmdclass={'install': install},
+    install_requires=[
+        'future',
+    ],
 )
