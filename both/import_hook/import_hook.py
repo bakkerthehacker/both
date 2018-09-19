@@ -1,15 +1,20 @@
 # -*- coding: utf-8 -*-
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+from __future__ import unicode_literals
+
 import sys
 from itertools import chain
 
 import libfuturize.fixes
-import libpasteurize.fixes.fix_names
+import libpasteurize.fixes
 # from lib2to3.refactor import RefactoringTool
 
 if sys.version_info[0] <= 2:
-    from hook_py2 import hook
+    from .hook_py2 import hook
 else:
-    from hook_py3 import hook
+    from .hook_py3 import hook
 
 futurize_fixes = {
     fix for fix in chain(
