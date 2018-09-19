@@ -4,4 +4,4 @@
 
 def test_smoke():
     something = {}
-    something.viewkeys()
+    assert type(something.viewkeys()) is not list
