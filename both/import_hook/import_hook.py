@@ -6,6 +6,11 @@ import libfuturize.fixes
 import libpasteurize.fixes.fix_names
 # from lib2to3.refactor import RefactoringTool
 
+if sys.version_info[0] <= 2:
+    from hook_py2 import hook
+else:
+    from hook_py3 import hook
+
 futurize_fixes = {
     fix for fix in chain(
         libfuturize.fixes.libfuturize_fix_names_stage1,
@@ -16,12 +21,6 @@ futurize_fixes = {
 }
 
 pasteurize_fixes = libpasteurize.fixes.fix_names
-
-# None
-if sys.version_info[0] <= 2:
-    hook = None
-else:
-    hook = None
 
 
 def add_api_hook():
