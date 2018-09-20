@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# -*- python api: 3 -*-
+# -*- python version: 3 -*-
 
 
 def test_smoke():

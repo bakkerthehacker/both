@@ -14,5 +14,4 @@ else:
 
 def add_api_hook():
     if hook not in sys.meta_path:
-        pass
-        # sys.meta_path.append(hook)
+        sys.meta_path.append(hook)

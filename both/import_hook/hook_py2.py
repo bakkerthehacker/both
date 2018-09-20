@@ -23,8 +23,13 @@ futurize_tool = RefactoringTool(futurize_fixes)
 # tree = futurize_tool.refactor_string(source, self.pathname)
 
 
-class Something(object):
-    pass
+class BothPython2FinderLoader(object):
+
+    def find_module(fullname, path=None):
+        pass
+
+    def load_module(fullname):
+        pass
 
 
-hook = Something()
+hook = BothPython2FinderLoader()
