@@ -5,10 +5,9 @@ from __future__ import print_function
 from __future__ import unicode_literals
 
 from itertools import chain
+from lib2to3.refactor import RefactoringTool
 
 import libfuturize.fixes
-
-# from lib2to3.refactor import RefactoringTool
 
 futurize_fixes = {
     fix for fix in chain(
@@ -18,6 +17,10 @@ futurize_fixes = {
         libfuturize.fixes.lib2to3_fix_names_stage2,
     )
 }
+
+futurize_tool = RefactoringTool(futurize_fixes)
+
+# tree = futurize_tool.refactor_string(source, self.pathname)
 
 
 class Something(object):
