@@ -1,18 +1,21 @@
 # -*- coding: utf-8 -*-
-import setuptools
+from setuptools import find_packages
+from setuptools import setup
 
-setuptools.setup(
+
+setup(
     name='both',
     version='0.0.1',
     author='Grant Bakker',
     author_email='grant@bakker.pw',
-    description='A small example package',
+    description='Python compatibility layer',
     url='https://bakkerthehacker.github.io/both/',
-    packages=setuptools.find_packages(),
     classifiers=(
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Operating System :: OS Independent',
         'License :: OSI Approved :: MIT License',
     ),
+    packages=find_packages(exclude=['tests.*', 'tests']),
+    install_requires=['source-transform'],
 )
