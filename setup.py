@@ -5,7 +5,7 @@ from setuptools import setup
 
 setup(
     name='both',
-    version='0.0.1',
+    version='0.1.0',
     author='Grant Bakker',
     author_email='grant@bakker.pw',
     description='Python compatibility layer',
