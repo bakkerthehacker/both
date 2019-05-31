@@ -17,5 +17,5 @@ setup(
         'License :: OSI Approved :: MIT License',
     ),
     packages=find_packages(exclude=['tests.*', 'tests']),
-    install_requires=['six', 'source-transform>=0.1.1', 'future'],
+    install_requires=['six', 'source-transform>=0.1.2', 'future'],
 )
