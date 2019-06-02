@@ -3,5 +3,6 @@
 
 py2 = None
 py3 = None
+fixes = None
 
-__all__ = ['py2', 'py3']
+__all__ = ['py2', 'py3', 'fixes']

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import re
 from lib2to3.refactor import RefactoringTool
 
 import six
@@ -9,6 +10,8 @@ from both.fixes import pasteurize_fixes
 
 futurize_tool = RefactoringTool(futurize_fixes)
 pasteurize_tool = RefactoringTool(pasteurize_fixes)
+fixes_regex = re.compile(
+    r'^ *import +__fixes__\.([\w\.]+) *(#.*)?$', re.MULTILINE)
 
 
 if six.PY2:
@@ -39,3 +42,25 @@ if six.PY3:
         @staticmethod
         def transform(data, pathname, **kwargs):
             return str(futurize_tool.refactor_string(data, pathname))
+
+
+class FixesTransform(BaseTransform):
+
+    @staticmethod
+    def trigger(mmaped_file, **kwargs):
+        if mmaped_file.find(b'from __both__ import fixes') >= 0:
+            return True
+        return False
+
+    @staticmethod
+    def transform(data, pathname, **kwargs):
+        fixes = {
+            match.group(1)
+            for match in fixes_regex.finditer(data)
+        }
+
+        custom_tool = RefactoringTool(fixes)
+
+        fixed_data = str(custom_tool.refactor_string(data, pathname))
+
+        return fixes_regex.sub('', fixed_data)
