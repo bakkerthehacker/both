@@ -50,14 +50,28 @@ class FixesTransform(BaseTransform):
     def trigger(mmaped_file, **kwargs):
         if mmaped_file.find(b'from __both__ import fixes') >= 0:
             return True
+        if mmaped_file.find(b'from __both__.py3 import fixes') >= 0:
+            return True
+        if mmaped_file.find(b'from __both__.py2 import fixes') >= 0:
+            return True
         return False
 
     @staticmethod
     def transform(data, pathname, **kwargs):
+        if six.PY2:
+            if data.find('from __both__.py2 import fixes') >= 0:
+                return fixes_regex.sub('', data)
+        if six.PY3:
+            if data.find('from __both__.py3 import fixes') >= 0:
+                return fixes_regex.sub('', data)
+
         fixes = {
             match.group(1)
             for match in fixes_regex.finditer(data)
         }
+
+        if not fixes:
+            return fixes_regex.sub('', data)
 
         custom_tool = RefactoringTool(fixes)
 
