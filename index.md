@@ -1,3 +1,8 @@
+---
+title: both
+---
+
+
 ## both python 2 and python 3 in the same project
 
 Use dictionary and metaclass styles from both in the same project. Mix and match your styles in both python 2 and 3 environments.  
