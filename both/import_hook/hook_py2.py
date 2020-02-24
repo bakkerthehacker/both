@@ -25,11 +25,7 @@ futurize_tool = RefactoringTool(futurize_fixes)
 
 class BothPython2FinderLoader(object):
 
-    def find_module(fullname, path=None):
-        pass
-
-    def load_module(fullname):
-        pass
+    pass
 
 
 hook = BothPython2FinderLoader()

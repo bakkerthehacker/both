@@ -2,17 +2,24 @@
 import distutils
 import os.path
 
+from setuptools import find_packages
 from setuptools import setup
 from setuptools.command.install import install as setuptools_install
 
 
+# PTH = """
+# try:
+#     import both
+# except ImportError as e:
+#     print(e)
+#     pass
+# else:
+#     both.register()
+# """
+
 PTH = """
-try:
-    import both
-except ImportError:
-    pass
-else:
-    both.register()
+import both
+both.register()
 """
 
 
@@ -58,7 +65,7 @@ setup(
         'Operating System :: OS Independent',
         'License :: OSI Approved :: MIT License',
     ),
-    packages=['both'],
+    packages=find_packages(),
     cmdclass={'install': install},
     install_requires=[
         'future',
